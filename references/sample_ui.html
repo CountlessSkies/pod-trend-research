@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<!--
+  ============================================================
+  POD TREND SCOUT — Reference UI & Sample Cards
+  ============================================================
+  Mục đích: AI đọc file này để hiểu chính xác cấu trúc HTML,
+  tên CSS class, và chất lượng output cần đạt được.
+
+  Thay thế khi xuất thật:
+    {{DATE}}    → Ngày báo cáo, VD: 16/04/2026
+    {{SUMMARY}} → Đoạn tổng kết thị trường hôm nay
+    {{CARDS}}   → Toàn bộ các <div class="card"> ghép lại
+
+  Tên file output: POD_YYMMDD.html
+  Lưu vào: C:\Users\{username}\.openclaw\workspace\projects\POD
+  ============================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POD Trend Report - {{DATE}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== DESIGN TOKENS ===== */
+        :root {
+            --bg-color:    #0f172a;
+            --card-bg:     rgba(30, 41, 59, 0.7);
+            --accent-color:#38bdf8;
+            --text-main:   #f8fafc;
+            --text-dim:    #94a3b8;
+            --safe-color:  #22c55e;
+            --warn-color:  #eab308;
+            --risk-color:  #ef4444;
+        }
+
+        /* ===== BASE ===== */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        h1 { margin: 0; color: var(--accent-color); font-size: 2.5rem; }
+        .date { color: var(--text-dim); margin: 8px 0 0; }
+
+        /* ===== LAYOUT ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        /* ===== BADGES =====
+           Trend type badges — dùng đúng class tương ứng:
+           badge-trending | badge-bestseller | badge-breakout |
+           badge-popular  | badge-evergreen  | badge-seasonal | badge-micro
+        */
+        .badge {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            margin-right: 6px;
+            border: 1px solid transparent;
+        }
+        .badge-trending   { background: rgba(59,130,246,0.15);  color: #60a5fa; border-color: rgba(59,130,246,0.5); }
+        .badge-bestseller { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.5); }
+        .badge-breakout   { background: rgba(168,85,247,0.15);  color: #c084fc; border-color: rgba(168,85,247,0.5); }
+        .badge-popular    { background: rgba(236,72,153,0.15);  color: #f472b6; border-color: rgba(236,72,153,0.5); }
+        .badge-evergreen  { background: rgba(34,197,94,0.15);   color: #4ade80; border-color: rgba(34,197,94,0.5); }
+        .badge-seasonal   { background: rgba(234,179,8,0.15);   color: #fbbf24; border-color: rgba(234,179,8,0.5); }
+        .badge-micro      { background: rgba(20,184,166,0.15);  color: #2dd4bf; border-color: rgba(20,184,166,0.5); }
+
+        /* Risk badges — dùng đúng class: badge-safe | badge-warn | badge-risk */
+        .badge-safe { background: rgba(34,197,94,0.2);  color: var(--safe-color); border: 1px solid var(--safe-color); }
+        .badge-warn { background: rgba(234,179,8,0.2);  color: var(--warn-color); border: 1px solid var(--warn-color); }
+        .badge-risk { background: rgba(239,68,68,0.2);  color: var(--risk-color); border: 1px solid var(--risk-color); }
+
+        .badges-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== CARD ELEMENTS ===== */
+        .trend-title { font-size: 1.4rem; font-weight: 700; margin: 10px 0; color: var(--text-main); }
+
+        /* Main keyword — luôn có onclick="copyToClipboard('...')" */
+        .main-kw {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            border: 1px dashed rgba(255,255,255,0.2);
+            transition: all 0.2s;
+        }
+        .main-kw:hover { background: rgba(56,189,248,0.1); border-color: var(--accent-color); }
+        .main-kw:active { background: var(--accent-color); color: #0f172a; }
+
+        .desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 16px; }
+
+        /* Risk detail — thêm class .warn hoặc .risk để đổi border màu */
+        .risk-detail {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+        }
+        .risk-detail.warn { border-left-color: var(--warn-color); }
+        .risk-detail.risk { border-left-color: var(--risk-color); }
+
+        .stats { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; font-size: 0.82rem; }
+        .stat-item { background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px; }
+
+        .design-angle {
+            background: rgba(56,189,248,0.08);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.88rem;
+            margin-top: auto;
+            margin-bottom: 12px;
+        }
+
+        /* Tags — luôn có onclick="copyToClipboard('...')" trên toàn bộ div */
+        .tags-container {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 4px;
+            border: 1px dashed rgba(255,255,255,0.2);
+            transition: all 0.2s;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            word-break: break-word;
+        }
+        .tags-container:hover { background: rgba(56,189,248,0.1); border-color: var(--accent-color); }
+        .tags-container:active { background: var(--accent-color); color: #0f172a; }
+        .tags-text { flex: 1; }
+
+        /* ===== SUMMARY BLOCK ===== */
+        .summary {
+            max-width: 1400px;
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            background: rgba(56,189,248,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(56,189,248,0.2);
+        }
+        .summary h2 { margin-top: 0; color: var(--accent-color); }
+
+        /* ===== FOOTER / LEGEND ===== */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .legend { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 12px; }
+        .legend-item { font-size: 0.78rem; }
+
+        /* ===== CLIPBOARD TOAST ===== */
+        .toast {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--accent-color); color: #0f172a;
+            padding: 10px 20px; border-radius: 8px;
+            display: none; z-index: 1000; font-weight: 700;
+            box-shadow: 0 4px 20px rgba(56,189,248,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>POD TREND SCOUT</h1>
+    <p class="date">Báo cáo nghiên cứu ngày {{DATE}} | Asia/Bangkok</p>
+</header>
+
+<!-- Executive Summary — thay {{SUMMARY}} bằng nhận định thị trường hôm nay -->
+<div class="summary">
+    <h2>🚀 Tổng kết thị trường hôm nay</h2>
+    <p>{{SUMMARY}}</p>
+</div>
+
+<!-- Grid Cards — thay {{CARDS}} bằng các <div class="card"> bên dưới -->
+<div class="grid">
+    {{CARDS}}
+</div>
+
+<div id="toast" class="toast">✅ Đã copy vào Clipboard!</div>
+
+<footer>
+    <div class="legend">
+        <span class="legend-item">📈 <strong>Trending</strong>: Đang đi lên</span>
+        <span class="legend-item">🏆 <strong>Bestseller</strong>: Doanh số cao</span>
+        <span class="legend-item">🆕 <strong>Breakout</strong>: Tăng trưởng đột biến</span>
+        <span class="legend-item">✨ <strong>Popular</strong>: Tìm kiếm ổn định</span>
+        <span class="legend-item">🌲 <strong>Evergreen</strong>: Bán quanh năm</span>
+        <span class="legend-item">🎈 <strong>Seasonal</strong>: Theo mùa/lễ hội</span>
+        <span class="legend-item">💎 <strong>Micro-Niche</strong>: Cạnh tranh gần 0</span>
+    </div>
+    <p>Data provided by OpenClaw Assistant | Nguồn: Insightfactory, Pinterest, Google Trends</p>
+</footer>
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        });
+    }
+</script>
+
+<!-- ============================================================
+  SAMPLE CARDS — Mẫu tham khảo chất lượng output
+  AI đọc phần này để biết chính xác cấu trúc từng loại card.
+  Không đưa phần này vào báo cáo thật.
+============================================================ -->
+
+<!-- SAMPLE 1: Safe + Evergreen + Micro-Niche -->
+<!--
+<div class="card">
+    <div class="badges-wrapper">
+        <span class="badge badge-evergreen">🌲 Evergreen</span>
+        <span class="badge badge-micro">💎 Micro-Niche</span>
+        <span class="badge badge-safe">🟢 Safe</span>
+    </div>
+    <div class="trend-title">Cat Mom Teacher</div>
+    <div class="main-kw" onclick="copyToClipboard('cat mom teacher')">
+        <span>cat mom teacher</span>
+        <small>📋</small>
+    </div>
+    <p class="desc">Giao thoa giữa "giáo viên yêu mèo" — niche cross rất mạnh vì vừa cụ thể vừa cộng đồng lớn. Target: nữ giáo viên tiểu học, 25–40 tuổi, nuôi mèo.</p>
+    <div class="risk-detail">✅ Không tìm thấy Trademark liên quan ngành may mặc.</div>
+    <div class="stats">
+        <span class="stat-item">Results: ~620</span>
+        <span class="stat-item">Potential: 🔥 High</span>
+        <span class="stat-item">Volume: Stable</span>
+    </div>
+    <div class="design-angle">
+        <strong>🎨 Design Angle:</strong> Illustration mèo ngồi trên chồng sách. Style flat minimalist hoặc watercolor pastel.
+        Font chữ handwritten. Màu: dusty rose + sage green.
+    </div>
+    <div class="tags-container" onclick="copyToClipboard('cat mom teacher, funny cat teacher shirt, teacher cat lover, crazy cat teacher, cat lady teacher, meow teacher, teacher cat gift, feline teacher tee, teacher appreciation cat, kitten teacher shirt, cat mom educator, cat teacher funny, best teacher cat, teacher cat design, classroom cat')" title="Click để copy toàn bộ tags">
+        <span class="tags-text">cat mom teacher, funny cat teacher shirt, teacher cat lover, crazy cat teacher, cat lady teacher, meow teacher, teacher cat gift, feline teacher tee, teacher appreciation cat, kitten teacher shirt, cat mom educator, cat teacher funny, best teacher cat, teacher cat design, classroom cat</span>
+        <small style="flex-shrink:0">📋</small>
+    </div>
+</div>
+-->
+
+<!-- SAMPLE 2: Warning -->
+<!--
+<div class="card">
+    <div class="badges-wrapper">
+        <span class="badge badge-trending">📈 Trending</span>
+        <span class="badge badge-warn">🟡 Warning</span>
+    </div>
+    <div class="trend-title">Retro NASA Vibes</div>
+    <div class="main-kw" onclick="copyToClipboard('retro space explorer vintage')">
+        <span>retro space explorer vintage</span>
+        <small>📋</small>
+    </div>
+    <p class="desc">Aesthetic vũ trụ retro đang viral trên Pinterest. Target: học sinh, sinh viên yêu khoa học vũ trụ.</p>
+    <div class="risk-detail warn">⚠️ "NASA" là thương hiệu chính phủ Mỹ, không đăng ký ngành may mặc riêng. Tránh logo chính thức.
+    Thay bằng "Space Explorer" hoặc "Cosmic Retro" an toàn hơn.</div>
+    <div class="stats">
+        <span class="stat-item">Results: ~3,200</span>
+        <span class="stat-item">Potential: 🔶 Medium</span>
+        <span class="stat-item">Volume: Rising</span>
+    </div>
+    <div class="design-angle">
+        <strong>🎨 Design Angle:</strong> Badge patch style, retro typography, màu navy + cam + kem ố.
+        Tránh logo NASA thật. Dùng rocket/planet tự vẽ.
+    </div>
+    <div class="tags-container" onclick="copyToClipboard('retro space shirt, vintage space explorer, cosmic adventure tee, retro astronaut, space science lover, galaxy retro design, 80s space aesthetic, star explorer vintage, retro rocket shirt, cosmic retro tshirt, space nerd shirt, universe explorer, retro planet shirt, vintage cosmos, astronaut vintage tee')" title="Click để copy toàn bộ tags">
+        <span class="tags-text">retro space shirt, vintage space explorer, cosmic adventure tee, retro astronaut, space science lover, galaxy retro design, 80s space aesthetic, star explorer vintage, retro rocket shirt, cosmic retro tshirt, space nerd shirt, universe explorer, retro planet shirt, vintage cosmos, astronaut vintage tee</span>
+        <small style="flex-shrink:0">📋</small>
+    </div>
+</div>
+-->
+
+<!-- SAMPLE 3: Copyright + gợi ý sub-niche lách -->
+<!--
+<div class="card">
+    <div class="badges-wrapper">
+        <span class="badge badge-breakout">🆕 Breakout</span>
+        <span class="badge badge-risk">🔴 Copyright</span>
+    </div>
+    <div class="trend-title">Bluey Fan Art</div>
+    <div class="main-kw" onclick="copyToClipboard('bluey family cartoon kids')">
+        <span>bluey family cartoon kids</span>
+        <small>📋</small>
+    </div>
+    <p class="desc">Cartoon Úc cực popular với trẻ em và phụ huynh. Volume rất cao nhưng toàn bộ IP thuộc Ludo Studio / BBC Studios.</p>
+    <div class="risk-detail risk">🔴 IP rõ ràng: BLUEY® đăng ký bởi <strong>Ludo Studio Pty Ltd</strong>. Tránh character, tên, màu sắc đặc trưng.
+    <br><br>💡 <strong>Sub-niche lách:</strong> "Blue Heeler Dog Mom", "Australian Cattle Dog Family" — dùng giống chó thật, không dùng tên nhân vật.</div>
+    <div class="stats">
+        <span class="stat-item">Results: ~12,000</span>
+        <span class="stat-item">Potential: ⛔ Avoid Direct</span>
+        <span class="stat-item">Volume: 🔥 Very High</span>
+    </div>
+    <div class="design-angle">
+        <strong>🎨 Design Angle (Sub-niche):</strong> Blue Heeler cute generic (không giống Bluey).
+        Cụm: "Dog Mom of a Heeler". Style cartoon đơn giản, tránh palette Bluey.
+    </div>
+    <div class="tags-container" onclick="copyToClipboard('blue heeler mom shirt, australian cattle dog mom, heeler dog lover, blue heeler owner gift, cattle dog mom tee, blue heeler dog shirt, queensland heeler mom, aussie dog mom, heeler puppy shirt, cattle dog owner, blue heeler gift women, dog mom heeler, heeler life shirt, australian heeler dog, blue cattle dog lover')" title="Click để copy toàn bộ tags">
+        <span class="tags-text">blue heeler mom shirt, australian cattle dog mom, heeler dog lover, blue heeler owner gift, cattle dog mom tee, blue heeler dog shirt, queensland heeler mom, aussie dog mom, heeler puppy shirt, cattle dog owner, blue heeler gift women, dog mom heeler, heeler life shirt, australian heeler dog, blue cattle dog lover</span>
+        <small style="flex-shrink:0">📋</small>
+    </div>
+</div>
+-->
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "POD Trend Researcher",
+  "version": "1.2.0",
+  "author": "User & Antigravity",
+  "description": "Professional tool for POD trend analysis and dashboard generation.",
+  "category": "POD Research",
+  "main": "SKILL.md",
+  "dependencies": [],
+  "updated_at": "2026-04-16"
+}
