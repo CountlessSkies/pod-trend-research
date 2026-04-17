@@ -82,9 +82,27 @@
         }
 
         /* ===== BADGES =====
-           Trend type badges — dùng đúng class tương ứng:
-           badge-trending | badge-bestseller | badge-breakout |
-           badge-popular  | badge-evergreen  | badge-seasonal | badge-micro
+           Badge system gồm 3 NHÓM — dùng đúng thứ tự: Trend Type → Market Signal → Risk
+
+           NHÓM 1 — Trend Type (màu xanh/tím/cam/hồng):
+             badge-trending   → 📈 Trending     (đang đi lên)
+             badge-bestseller → 🏆 Bestseller   (doanh số cao)
+             badge-breakout   → 🆕 Breakout     (tăng trưởng đột biến)
+             badge-popular    → ✨ Popular      (tìm kiếm ổn định)
+             badge-evergreen  → 🌲 Evergreen    (bán quanh năm)
+             badge-seasonal   → 🎈 Seasonal     (theo mùa/lễ hội)
+             badge-micro      → 💎 Micro-Niche  (cạnh tranh gần 0)
+
+           NHÓM 2 — Market Signal (màu indigo — thêm bao nhiêu tùy ý theo dữ liệu):
+             badge-signal → thông tin thị trường cụ thể, ví dụ:
+               🔥 Potential: Viral | 📊 Growth: +220% | 🎯 Target: Gen Z
+               🗓️ Season: Easter  | 📡 Source: Pinterest | 🔍 Results: ~620
+               📈 Volume: Rising  | ⚔️ Competition: Low
+
+           NHÓM 3 — Risk Level (bắt buộc có đúng 1 badge):
+             badge-safe → 🟢 Safe
+             badge-warn → 🟡 Warning
+             badge-risk → 🔴 Copyright
         */
         .badge {
             font-size: 0.7rem;
@@ -98,6 +116,7 @@
             margin-right: 6px;
             border: 1px solid transparent;
         }
+        /* Nhóm 1 — Trend Type */
         .badge-trending   { background: rgba(59,130,246,0.15);  color: #60a5fa; border-color: rgba(59,130,246,0.5); }
         .badge-bestseller { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.5); }
         .badge-breakout   { background: rgba(168,85,247,0.15);  color: #c084fc; border-color: rgba(168,85,247,0.5); }
@@ -106,7 +125,10 @@
         .badge-seasonal   { background: rgba(234,179,8,0.15);   color: #fbbf24; border-color: rgba(234,179,8,0.5); }
         .badge-micro      { background: rgba(20,184,166,0.15);  color: #2dd4bf; border-color: rgba(20,184,166,0.5); }
 
-        /* Risk badges — dùng đúng class: badge-safe | badge-warn | badge-risk */
+        /* Nhóm 2 — Market Signal (indigo) */
+        .badge-signal { background: rgba(99,102,241,0.15); color: #a5b4fc; border-color: rgba(99,102,241,0.5); }
+
+        /* Nhóm 3 — Risk Level (bắt buộc 1 badge) */
         .badge-safe { background: rgba(34,197,94,0.2);  color: var(--safe-color); border: 1px solid var(--safe-color); }
         .badge-warn { background: rgba(234,179,8,0.2);  color: var(--warn-color); border: 1px solid var(--warn-color); }
         .badge-risk { background: rgba(239,68,68,0.2);  color: var(--risk-color); border: 1px solid var(--risk-color); }
@@ -152,8 +174,7 @@
         .risk-detail.warn { border-left-color: var(--warn-color); }
         .risk-detail.risk { border-left-color: var(--risk-color); }
 
-        .stats { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; font-size: 0.82rem; }
-        .stat-item { background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px; }
+        /* .stats đã bị loại bỏ — thông tin thị trường nay dùng badge-signal trong .badges-wrapper */
 
         .design-angle {
             background: rgba(56,189,248,0.08);
@@ -272,8 +293,15 @@
 <!--
 <div class="card">
     <div class="badges-wrapper">
+        <!-- Nhóm 1: Trend Type -->
         <span class="badge badge-evergreen">🌲 Evergreen</span>
         <span class="badge badge-micro">💎 Micro-Niche</span>
+        <!-- Nhóm 2: Market Signal — thêm bao nhiêu tùy dữ liệu -->
+        <span class="badge badge-signal">🔥 Potential: High</span>
+        <span class="badge badge-signal">🔍 Results: ~620</span>
+        <span class="badge badge-signal">🎯 Target: Female Teachers 25–40</span>
+        <span class="badge badge-signal">📡 Source: Redbubble</span>
+        <!-- Nhóm 3: Risk — bắt buộc đúng 1 -->
         <span class="badge badge-safe">🟢 Safe</span>
     </div>
     <div class="trend-title">Cat Mom Teacher</div>
@@ -281,13 +309,8 @@
         <span>cat mom teacher</span>
         <small>📋</small>
     </div>
-    <p class="desc">Giao thoa giữa "giáo viên yêu mèo" — niche cross rất mạnh vì vừa cụ thể vừa cộng đồng lớn. Target: nữ giáo viên tiểu học, 25–40 tuổi, nuôi mèo.</p>
+    <p class="desc">Giao thoa giữa "giáo viên yêu mèo" — niche cross rất mạnh vì vừa cụ thể vừa cộng đồng lớn.</p>
     <div class="risk-detail">✅ Không tìm thấy Trademark liên quan ngành may mặc.</div>
-    <div class="stats">
-        <span class="stat-item">Results: ~620</span>
-        <span class="stat-item">Potential: 🔥 High</span>
-        <span class="stat-item">Volume: Stable</span>
-    </div>
     <div class="design-angle">
         <strong>🎨 Design Angle:</strong> Illustration mèo ngồi trên chồng sách. Style flat minimalist hoặc watercolor pastel.
         Font chữ handwritten. Màu: dusty rose + sage green.
@@ -303,7 +326,15 @@
 <!--
 <div class="card">
     <div class="badges-wrapper">
+        <!-- Nhóm 1: Trend Type -->
         <span class="badge badge-trending">📈 Trending</span>
+        <!-- Nhóm 2: Market Signal -->
+        <span class="badge badge-signal">🔶 Potential: Medium</span>
+        <span class="badge badge-signal">🔍 Results: ~3,200</span>
+        <span class="badge badge-signal">📈 Volume: Rising</span>
+        <span class="badge badge-signal">🎯 Target: Students / Gen Z</span>
+        <span class="badge badge-signal">📡 Source: Pinterest</span>
+        <!-- Nhóm 3: Risk -->
         <span class="badge badge-warn">🟡 Warning</span>
     </div>
     <div class="trend-title">Retro NASA Vibes</div>
@@ -314,11 +345,6 @@
     <p class="desc">Aesthetic vũ trụ retro đang viral trên Pinterest. Target: học sinh, sinh viên yêu khoa học vũ trụ.</p>
     <div class="risk-detail warn">⚠️ "NASA" là thương hiệu chính phủ Mỹ, không đăng ký ngành may mặc riêng. Tránh logo chính thức.
     Thay bằng "Space Explorer" hoặc "Cosmic Retro" an toàn hơn.</div>
-    <div class="stats">
-        <span class="stat-item">Results: ~3,200</span>
-        <span class="stat-item">Potential: 🔶 Medium</span>
-        <span class="stat-item">Volume: Rising</span>
-    </div>
     <div class="design-angle">
         <strong>🎨 Design Angle:</strong> Badge patch style, retro typography, màu navy + cam + kem ố.
         Tránh logo NASA thật. Dùng rocket/planet tự vẽ.
@@ -334,7 +360,14 @@
 <!--
 <div class="card">
     <div class="badges-wrapper">
+        <!-- Nhóm 1: Trend Type -->
         <span class="badge badge-breakout">🆕 Breakout</span>
+        <!-- Nhóm 2: Market Signal -->
+        <span class="badge badge-signal">🔥 Volume: Very High</span>
+        <span class="badge badge-signal">🔍 Results: ~12,000</span>
+        <span class="badge badge-signal">🎯 Target: Parents / Kids</span>
+        <span class="badge badge-signal">⛔ Direct: Avoid</span>
+        <!-- Nhóm 3: Risk -->
         <span class="badge badge-risk">🔴 Copyright</span>
     </div>
     <div class="trend-title">Bluey Fan Art</div>
@@ -345,11 +378,6 @@
     <p class="desc">Cartoon Úc cực popular với trẻ em và phụ huynh. Volume rất cao nhưng toàn bộ IP thuộc Ludo Studio / BBC Studios.</p>
     <div class="risk-detail risk">🔴 IP rõ ràng: BLUEY® đăng ký bởi <strong>Ludo Studio Pty Ltd</strong>. Tránh character, tên, màu sắc đặc trưng.
     <br><br>💡 <strong>Sub-niche lách:</strong> "Blue Heeler Dog Mom", "Australian Cattle Dog Family" — dùng giống chó thật, không dùng tên nhân vật.</div>
-    <div class="stats">
-        <span class="stat-item">Results: ~12,000</span>
-        <span class="stat-item">Potential: ⛔ Avoid Direct</span>
-        <span class="stat-item">Volume: 🔥 Very High</span>
-    </div>
     <div class="design-angle">
         <strong>🎨 Design Angle (Sub-niche):</strong> Blue Heeler cute generic (không giống Bluey).
         Cụm: "Dog Mom of a Heeler". Style cartoon đơn giản, tránh palette Bluey.

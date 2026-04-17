@@ -3,6 +3,31 @@ name: "POD Research Strategies"
 description: "Quy tắc tìm kiếm, làm giàu dữ liệu và kiểm tra an toàn cho POD."
 ---
 
+## 🗂️ Chiến lược chọn nguồn (Source Strategy)
+
+**Luôn bắt đầu từ Nhóm A**, mở rộng sang B/C chỉ khi cần:
+
+```
+Bắt đầu → Nhóm A (Purchase Signal — Redbubble ecosystem)
+               ↓
+          Đủ 15 niche? ──YES──→ Qua Bước 2 Safety Check
+               ↓ NO
+          Mở rộng → Nhóm B (Early Signal — Pinterest / Exploding Topics)
+               │  Tìm niche tiềm năng → validate lại qua Nhóm A
+               ↓
+          Vẫn thiếu hoặc cần xác nhận độ bền?
+               ↓
+          Nhóm C (Validation — Google Trends / KeywordTool)
+```
+
+- **Nhóm A** trả lời: *"Người ta đang tìm MUA gì?"* → commercial intent, dùng trực tiếp
+- **Nhóm B** trả lời: *"Gì đang nổi ngoài kia?"* → phải translate aesthetic → keyword, validate qua A
+- **Nhóm C** trả lời: *"Trend này bền không?"* → dùng để xác nhận, không để discovery
+
+> ⚠️ Pinterest Trends báo volume *tương đối*, không phải con số tuyệt đối. Đừng dùng Pinterest làm nguồn duy nhất để quyết định một niche.
+
+---
+
 ## 🔍 Chiến thuật thu thập (Search Strategy)
 - **Hạn chế quét trực tiếp**: Tuyệt đối không quét trực tiếp Redbubble với tần suất cao. Ưu tiên lấy "Seed Keywords" từ các công cụ bên thứ 3.
 - **Làm giàu dữ liệu (Data Enrichment)**: Nếu nguồn chính thiếu thông tin, bắt buộc sử dụng `web-search` hoặc `agent-browser` để tìm hiểu thêm về:

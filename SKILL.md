@@ -26,9 +26,9 @@ description: "Chuyên gia nghiên cứu trend POD đa kênh qua bên thứ 3 và
 
 ### Bước 1 — Sàng lọc Trend (Scoping)
 
-- Truy cập các nguồn **AI-Accessible** (Nhóm 1) trong `references/sources.md`.
-- Áp dụng chiến thuật **70/30** từ `references/strategies.md`: 70% Evergreen, 30% Trending/Seasonal.
-- **Mục tiêu**: 15–20 niche. Nếu < 10 tìm được → mở rộng sang nguồn Secondary trong cùng file.
+- Bắt đầu từ **Nhóm A (Purchase Signal)** trong `references/sources.md`. Áp dụng decision flow A → B → C theo `references/strategies.md`.
+- Áp dụng chiến thuật **70/30**: 70% Evergreen, 30% Trending/Seasonal.
+- **Mục tiêu**: 15–20 niche. Nếu < 15 → mở rộng sang Nhóm B (Pinterest/Exploding Topics), validate lại qua Nhóm A.
 - ✅ **Hoàn thành khi**: Có danh sách raw keywords với tên niche + nguồn lấy từ đâu.
 
 ### Bước 2 — Safety Check (Kiểm tra Trademark)
@@ -57,7 +57,28 @@ Có Trademark trong ngành May mặc / Phụ kiện?
 - Xác định: Niche Name, Main Keyword, Target Audience, Design Angle.
 - Nếu thiếu thông tin: dùng `agent-browser` vào Pinterest hoặc Insightfactory để bổ sung.
 - Chi tiết chiến thuật: xem `references/strategies.md`.
-- ✅ **Hoàn thành khi**: Mỗi niche có đủ 6 trường: **Name, Keyword, Mô tả, Risk Level, Design Angle, Tags** (15–20 từ).
+
+**Badge System (3 nhóm — theo thứ tự):**
+
+| Nhóm | Class | Mô tả |
+|---|---|---|
+| 1️⃣ Trend Type | `badge-trending` / `badge-breakout` / `badge-evergreen` / `badge-seasonal` / `badge-bestseller` / `badge-popular` / `badge-micro` | Loại xu hướng — có thể dùng nhiều |
+| 2️⃣ Market Signal | `badge-signal` (indigo) | Thông tin cụ thể về thị trường — **thêm bao nhiêu tùy dữ liệu thu thập được**, không giới hạn |
+| 3️⃣ Risk Level | `badge-safe` / `badge-warn` / `badge-risk` | Bắt buộc **đúng 1 badge** |
+
+**Các Market Signal phổ biến** (dùng emoji gợi ý, nội dung điền theo dữ liệu thực tế):
+- `🔥 Potential: Viral / High / Medium` — mức tiềm năng
+- `📊 Growth: +220%` — tốc độ tăng trưởng (nếu có con số cụ thể)
+- `🔍 Results: ~620` — số lượng kết quả trên Redbubble
+- `📈 Volume: Rising / Stable` — xu hướng search volume
+- `⚔️ Competition: Low / High` — mức độ cạnh tranh
+- `🎯 Target: [mô tả đối tượng]` — khách hàng mục tiêu
+- `🗓️ Season: Easter / Summer...` — mùa vụ *(chỉ dùng nếu không đã có badge-seasonal)*
+- `📡 Source: [tên nguồn]` — nguồn dữ liệu
+
+⚠️ **Quy tắc chống trùng lặp**: Thông tin đã có trong Trend Type badge thì **không** điền lại vào Market Signal. Ví dụ: đã có `badge-seasonal` thì không cần thêm `Season: Easter`.
+
+- ✅ **Hoàn thành khi**: Mỗi niche có đủ 7 thành phần: **Name, Keyword, Mô tả, Badges (3 nhóm), Risk Detail, Design Angle, Tags** (15–20 từ).
 
 ### Bước 4 — Xuất Báo cáo HTML Dashboard
 
