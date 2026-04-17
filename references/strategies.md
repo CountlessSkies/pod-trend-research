@@ -24,9 +24,9 @@ Bắt đầu → Nhóm A (Purchase Signal — Redbubble ecosystem)
 - **Nhóm B** → đưa vào báo cáo, label `⏳ Stage: Early` để người dùng biết là tín hiệu sớm
 - **Nhóm C** → không discovery, chỉ dùng để bổ sung thông tin validation
 
-> 💡 **Triết lý**: Đây là **báo cáo tình báo thị trường**, không phải kế hoạch hành động. Càng nhiều tín hiệu càng tốt — kể cả chưa được xác nhận. Label confidence là công cụ để người dùng tự đánh giá, không phải để AI lọc thay. Chỉ loại bỏ khi AI tự bịa hoàn toàn không có nguồn.
+> 💡 **Triết lý**: Đây là **báo cáo tình báo thị trường**, không phải kế hoạch hành động.
 >
-> **AI không phải là người ra quyết định kinh doanh.** Nhiệm vụ của skill là cung cấp đầy đủ thông tin và label rõ confidence — kể cả những tín hiệu chưa được xác nhận.
+> **AI đóng vai trò biên tập báo cáo** — curation, phân loại, và đánh giá tiêu chuẩn chất lượng thông tin (niche nào vào Main, niche nào vào Radar, label risk level ra sao). **Người dùng đóng vai trò ra quyết định kinh doanh** — đầu tư, ưu tiên, và hành động. Hai vai trò này không chồng lấn.
 
 ---
 
@@ -48,3 +48,13 @@ Bắt đầu → Nhóm A (Purchase Signal — Redbubble ecosystem)
 ## 💡 Tư duy chọn Niche
 - Ưu tiên các niche có **Search Volume cao** nhưng **Result count < 1000** (Micro-Niche).
 - Tìm kiếm các "Keyword giao thoa" (Cross-niche). Vd: "Cat mom" + "Teacher".
+
+## 📡 Tiêu chí chọn niche Radar (Nhóm B)
+
+Không phải mọi trend Pinterest đều được vào Radar. Chỉ chọn **3–5 cái xuất sắc nhất** đáp ứng đủ cả 3 điều kiện sau:
+
+1. **Có số liệu rõ ràng** — có % tăng trưởng cụ thể, hoặc xuất hiện trong danh sách chính thức (Pinterest Predicts, Exploding Topics)
+2. **Translate được sang POD keyword** — aesthetic phải có thể diễn đạt thành keyword tìm kiếm trên Redbubble/Etsy được, không quá trừu tượng
+3. **Chưa bão hòa trên Redbubble** — nếu đã thấy nhiều sản phẩm rồi thì đưa lên Main Grid, không phải Radar
+
+Nếu thấy nhiều hơn 5 cái tiềm năng từ Nhóm B → chỉ giữ 3–5 cái **nổi bật nhất**, bỏ qua phần còn lại.

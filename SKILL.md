@@ -28,8 +28,10 @@ description: "Chuyên gia nghiên cứu trend POD đa kênh qua bên thứ 3 và
 
 - Bắt đầu từ **Nhóm A (Purchase Signal)** trong `references/sources.md`. Áp dụng decision flow A → B → C theo `references/strategies.md`.
 - Áp dụng chiến thuật **70/30**: 70% Evergreen, 30% Trending/Seasonal.
-- **Mục tiêu**: 15–20 niche. Nếu < 15 → mở rộng sang Nhóm B (Pinterest/Exploding Topics), validate lại qua Nhóm A.
-- ✅ **Hoàn thành khi**: Có danh sách raw keywords với tên niche + nguồn lấy từ đâu.
+- **Mục tiêu số lượng**:
+  - **Main Grid**: 12–15 niche từ Nhóm A (có purchase signal xác nhận trên Redbubble)
+  - **Radar**: 3–5 niche từ Nhóm B (chỉ chọn những cái **xuất sắc nhất** — có số liệu rõ ràng, translate được sang POD keyword, chưa bão hòa trên Redbubble)
+- ✅ **Hoàn thành khi**: Có danh sách raw keywords với tên niche + nguồn + phân loại (Main hay Radar).
 
 ### Bước 2 — Safety Check (Kiểm tra Trademark)
 
@@ -86,4 +88,7 @@ Có Trademark trong ngành May mặc / Phụ kiện?
 - Dùng layout HTML/CSS và card mẫu từ `references/sample_ui.html`.
 - **Tên file**: `POD_YYMMDD.html` (VD: `POD_260416.html`).
 - **Lưu vào**: `C:\Users\{username}\.openclaw\workspace\projects\POD` *(thay `{username}` bằng username thật của máy đang dùng)*.
+- **Cấu trúc 2 section**:
+  1. **Main Grid** — `<div class="grid">` — chứa 12–15 card từ Nhóm A, dùng `class="card"`
+  2. **Radar Section** — `<div class="radar-section">` + `<div class="grid">` — chứa 3–5 card từ Nhóm B, dùng `class="card card-radar"`, bắt buộc có `⏳ Stage: Early` badge
 - ✅ **Hoàn thành khi**: File HTML mở được trên browser, click Main Keyword & Tags đều copy được vào clipboard.

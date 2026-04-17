@@ -81,6 +81,39 @@
             border-color: var(--accent-color);
         }
 
+        /* Radar card — dùng cho niche từ Nhóm B (Early Signal) */
+        .card-radar {
+            border-style: dashed;
+            border-color: rgba(99,102,241,0.4);
+            background: rgba(99,102,241,0.05);
+            opacity: 0.92;
+        }
+        .card-radar:hover {
+            border-color: rgba(99,102,241,0.9);
+            opacity: 1;
+        }
+
+        /* Radar section wrapper */
+        .radar-section {
+            max-width: 1400px;
+            margin: 50px auto 0 auto;
+        }
+        .radar-section-header {
+            border-top: 1px solid rgba(99,102,241,0.3);
+            padding-top: 30px;
+            margin-bottom: 20px;
+        }
+        .radar-section-header h2 {
+            color: #a5b4fc;
+            margin: 0 0 6px 0;
+            font-size: 1.4rem;
+        }
+        .radar-section-header p {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin: 0;
+        }
+
         /* ===== BADGES =====
            Badge system gồm 3 NHÓM — dùng đúng thứ tự: Trend Type → Market Signal → Risk
 
@@ -253,9 +286,20 @@
     <p>{{SUMMARY}}</p>
 </div>
 
-<!-- Grid Cards — thay {{CARDS}} bằng các <div class="card"> bên dưới -->
+<!-- Grid Cards chính (Nhóm A — 12–15 niche có purchase signal) -->
 <div class="grid">
     {{CARDS}}
+</div>
+
+<!-- Radar Section (Nhóm B — 3–5 early signal xuất sắc) -->
+<div class="radar-section">
+    <div class="radar-section-header">
+        <h2>📡 Radar — Tín hiệu sớm (chưa xác nhận trên POD)</h2>
+        <p>Chưa có dữ liệu mua hàng trên Redbubble — nhưng có tiềm năng vào sớm trước đám đông. Tự đánh giá trước khi đầu tư.</p>
+    </div>
+    <div class="grid">
+        {{RADAR_CARDS}}
+    </div>
 </div>
 
 <div id="toast" class="toast">✅ Đã copy vào Clipboard!</div>
@@ -384,6 +428,37 @@
     </div>
     <div class="tags-container" onclick="copyToClipboard('blue heeler mom shirt, australian cattle dog mom, heeler dog lover, blue heeler owner gift, cattle dog mom tee, blue heeler dog shirt, queensland heeler mom, aussie dog mom, heeler puppy shirt, cattle dog owner, blue heeler gift women, dog mom heeler, heeler life shirt, australian heeler dog, blue cattle dog lover')" title="Click để copy toàn bộ tags">
         <span class="tags-text">blue heeler mom shirt, australian cattle dog mom, heeler dog lover, blue heeler owner gift, cattle dog mom tee, blue heeler dog shirt, queensland heeler mom, aussie dog mom, heeler puppy shirt, cattle dog owner, blue heeler gift women, dog mom heeler, heeler life shirt, australian heeler dog, blue cattle dog lover</span>
+        <small style="flex-shrink:0">📋</small>
+    </div>
+</div>
+-->
+
+<!-- SAMPLE 4: Radar Card (Nhóm B — Early Signal, dùng class card-radar) -->
+<!--
+<div class="card card-radar">
+    <div class="badges-wrapper">
+        <!-- Nhóm 1: Trend Type -->
+        <span class="badge badge-breakout">🆕 Breakout</span>
+        <!-- Nhóm 2: Market Signal — Stage: Early bắt buộc có -->
+        <span class="badge badge-signal">⏳ Stage: Early</span>
+        <span class="badge badge-signal">📊 Growth: +140%</span>
+        <span class="badge badge-signal">🎯 Target: Gen Z / Alt Fashion</span>
+        <span class="badge badge-signal">📡 Source: Pinterest Predicts</span>
+        <!-- Nhóm 3: Risk -->
+        <span class="badge badge-safe">🟢 Safe</span>
+    </div>
+    <div class="trend-title">Alien-core Aesthetic</div>
+    <div class="main-kw" onclick="copyToClipboard('alien core aesthetic futurism')">
+        <span>alien core aesthetic futurism</span>
+        <small>📋</small>
+    </div>
+    <p class="desc">Xu hướng aesthetic ngoài hành tinh đang viral cực mạnh trên Pinterest. Chưa bão hòa trên Redbubble — cơ hội vào sớm. Cần theo dõi thêm để xác nhận purchase intent.</p>
+    <div class="risk-detail">✅ Cụm từ mô tả phong cách chung, không vi phạm Trademark cụ thể.</div>
+    <div class="design-angle">
+        <strong>🎨 Design Angle:</strong> Hiệu ứng Opalescent (ánh trai), holographic, palette xanh lá neon + tím + đen. Hình người ngoài hành tinh cách điệu kiểu high-fashion.
+    </div>
+    <div class="tags-container" onclick="copyToClipboard('alien core, extraterrestrial aesthetic, futuristic design, space core, alien life, galaxy art, synthwave alien, cyberpunk space, ufo aesthetic, alien fashion, cosmic futurism, extraterrestrial life, sci-fi art, stellar aesthetic, alien vibes')" title="Click để copy toàn bộ tags">
+        <span class="tags-text">alien core, extraterrestrial aesthetic, futuristic design, space core, alien life, galaxy art, synthwave alien, cyberpunk space, ufo aesthetic, alien fashion, cosmic futurism, extraterrestrial life, sci-fi art, stellar aesthetic, alien vibes</span>
         <small style="flex-shrink:0">📋</small>
     </div>
 </div>
