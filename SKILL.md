@@ -75,6 +75,7 @@ Có Trademark trong ngành May mặc / Phụ kiện?
 - `🎯 Target: [mô tả đối tượng]` — khách hàng mục tiêu
 - `🗓️ Season: Easter / Summer...` — mùa vụ *(chỉ dùng nếu không đã có badge-seasonal)*
 - `📡 Source: [tên nguồn]` — nguồn dữ liệu
+- `⏳ Stage: Early` — **bắt buộc dùng** khi niche chỉ thấy ở Nhóm B (Pinterest/Exploding Topics), chưa confirm trên Redbubble tools
 
 ⚠️ **Quy tắc chống trùng lặp**: Thông tin đã có trong Trend Type badge thì **không** điền lại vào Market Signal. Ví dụ: đã có `badge-seasonal` thì không cần thêm `Season: Easter`.
 

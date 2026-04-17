@@ -5,26 +5,28 @@ description: "Quy tắc tìm kiếm, làm giàu dữ liệu và kiểm tra an to
 
 ## 🗂️ Chiến lược chọn nguồn (Source Strategy)
 
-**Luôn bắt đầu từ Nhóm A**, mở rộng sang B/C chỉ khi cần:
+**Luôn bắt đầu từ Nhóm A**, nhưng không bỏ qua Nhóm B dù đã đủ số lượng:
 
 ```
 Bắt đầu → Nhóm A (Purchase Signal — Redbubble ecosystem)
                ↓
-          Đủ 15 niche? ──YES──→ Qua Bước 2 Safety Check
-               ↓ NO
-          Mở rộng → Nhóm B (Early Signal — Pinterest / Exploding Topics)
-               │  Tìm niche tiềm năng → validate lại qua Nhóm A
+          Thu thập tất cả niche tìm được
                ↓
-          Vẫn thiếu hoặc cần xác nhận độ bền?
+          Nhóm B (Early Signal — Pinterest / Exploding Topics)
+               │  Nếu có breakout đáng chú ý → thêm vào dù Nhóm A đã đủ
+               │  Label: Stage: Early + Source: [tên nguồn]
                ↓
-          Nhóm C (Validation — Google Trends / KeywordTool)
+          Nhóm C (Validation — tùy chọn)
+               │  Dùng khi cần xác nhận độ bền / volume của bất kỳ niche nào
 ```
 
-- **Nhóm A** trả lời: *"Người ta đang tìm MUA gì?"* → commercial intent, dùng trực tiếp
-- **Nhóm B** trả lời: *"Gì đang nổi ngoài kia?"* → phải translate aesthetic → keyword, validate qua A
-- **Nhóm C** trả lời: *"Trend này bền không?"* → dùng để xác nhận, không để discovery
+- **Nhóm A** → đưa thẳng vào báo cáo, confidence cao
+- **Nhóm B** → đưa vào báo cáo, label `⏳ Stage: Early` để người dùng biết là tín hiệu sớm
+- **Nhóm C** → không discovery, chỉ dùng để bổ sung thông tin validation
 
-> ⚠️ Pinterest Trends báo volume *tương đối*, không phải con số tuyệt đối. Đừng dùng Pinterest làm nguồn duy nhất để quyết định một niche.
+> 💡 **Triết lý**: Đây là **báo cáo tình báo thị trường**, không phải kế hoạch hành động. Càng nhiều tín hiệu càng tốt — kể cả chưa được xác nhận. Label confidence là công cụ để người dùng tự đánh giá, không phải để AI lọc thay. Chỉ loại bỏ khi AI tự bịa hoàn toàn không có nguồn.
+>
+> **AI không phải là người ra quyết định kinh doanh.** Nhiệm vụ của skill là cung cấp đầy đủ thông tin và label rõ confidence — kể cả những tín hiệu chưa được xác nhận.
 
 ---
 

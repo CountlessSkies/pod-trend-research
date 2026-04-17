@@ -8,10 +8,10 @@ description: "Danh sách nguồn dữ liệu POD, phân loại theo vai trò và
 | Nhóm | Vai trò | Câu hỏi trả lời | Khi nào dùng |
 |---|---|---|---|
 | **A — Purchase Signal** | Kênh chính | *"Người ta đang tìm MUA gì trên POD?"* | Bắt buộc mỗi session |
-| **B — Early Signal** | Kênh mở rộng | *"Gì đang nổi ngoài kia chưa kịp vào POD?"* | Khi Nhóm A chưa đủ 15 niche |
+| **B — Early Signal** | Kênh mở rộng | *"Gì đang nổi ngoài kia chưa kịp vào POD?"* | Khi Nhóm A chưa đủ 15 niche, hoặc bất cứ lúc nào thấy breakout đáng chú ý |
 | **C — Validation** | Kênh xác nhận | *"Trend này có đủ volume thật không?"* | Khi cần xác nhận độ bền |
 
-> ⚠️ **Quy tắc**: Mọi niche lấy từ Nhóm B **bắt buộc phải validate** lại bằng Nhóm A hoặc C trước khi đưa vào báo cáo.
+> 💡 **Nguyên tắc**: Nhóm B **không cần** xác nhận từ Nhóm A mới được đưa vào báo cáo. Chính những tín hiệu sớm từ Pinterest có thể là cơ hội lớn nhất. Thay vào đó, **label rõ confidence level** để người dùng biết mà ra quyết định.
 
 ---
 
@@ -31,7 +31,16 @@ AI có thể dùng `agent-browser` hoặc `web-search` với các nguồn này.
 
 ## 🔭 Nhóm B — Early Signal (Kênh tín hiệu sớm)
 
-Phát hiện trend trước 3–6 tháng so với POD ecosystem. Kết quả phải validate lại qua Nhóm A.
+Phát hiện trend trước 3–6 tháng so với POD ecosystem.
+
+**Label cho mỗi niche từ Nhóm B:**
+
+| Signal cần thêm | Khi nào |
+|---|---|
+| *(không cần thêm gì)* | Niche đã thấy ở cả Nhóm A lẫn B |
+| `⏳ Stage: Early` + `📡 Source: [tên nguồn]` | Chỉ thấy ở Nhóm B, chưa có trên Redbubble tools — **vẫn đưa vào báo cáo** |
+
+Niche chỉ bị loại khi không có bất kỳ bằng chứng nào từ bất kỳ nguồn nào — tức là AI tự bỏ ra hoàn toàn không có cơ sở.
 
 | # | Nguồn | URL | Ghi chú |
 |---|---|---|---|
